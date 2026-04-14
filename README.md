@@ -1,66 +1,70 @@
-# HMP Vercel Website Template
+# HMP Website Rebuild
 
-This folder is a reusable static website template based on the platform-site surface.
+This repo is now a `Next.js App Router` marketing stack designed for SEO-dominant websites on Vercel.
 
-## What you get
+## What is included
 
-- Clean static source in `src/`
-- Production build output in `dist/`
-- Vercel config in `vercel.json`
-- Optional API endpoint for portal requests in `api/portal-access-request.js`
-- Figma Make drop-in convention for fast page swaps
+- Static-first marketing pages for `services`, `case studies`, `insights`, `contact`, and `portal`
+- Route-level metadata, canonicals, JSON-LD, `robots.txt`, and `sitemap.xml`
+- Google Places review support with a Sanity testimonial fallback
+- Webhook-ready route handlers for contact and portal-access requests
+- Embedded Sanity Studio scaffold with local fallback content so the site works before CMS credentials are wired up
 
-## Quick start
-
-1. Install dependencies:
+## Local development
 
 ```bash
-npm ci
+npm install
+npm run dev
 ```
 
-2. Build production output:
+Build the app locally:
 
 ```bash
 npm run build
 ```
 
-3. Optional local preview:
+## Environment variables
 
-```bash
-npm run preview
-```
+Copy `.env.example` to `.env.local` and fill in the values you want to activate.
 
-4. Deploy to Vercel:
+Core values:
 
-```bash
-npx vercel --prod
-```
-
-## Figma Make workflow
-
-1. Export your generated website pages/assets from Figma Make.
-2. Replace or add files inside `src/`.
-3. Keep shared brand assets under `src/platform-assets/`.
-4. Run `npm run build`.
-5. Deploy with `npx vercel --prod`.
-
-## New client website flow
-
-1. Copy this folder into a fresh repo.
-2. In the new repo, run `git init` and push.
-3. Import that repo into Vercel.
-4. Set framework preset to `Other` if asked.
-5. Build command: `npm run build`
-6. Output directory: `dist`
-
-## Portal form endpoint
-
-The page posts to `/v1/platform/portal-access-request`.
-
-Vercel rewrites that route to `/api/portal-access-request`.
-
-Set this env var in Vercel if you want real forwarding:
-
+- `NEXT_PUBLIC_SITE_URL`
+- `CONTACT_WEBHOOK_URL`
 - `PORTAL_ACCESS_WEBHOOK_URL`
 
-If not set, the endpoint still returns a success-style response for demo/staging.
+Sanity values:
+
+- `SANITY_PROJECT_ID`
+- `SANITY_DATASET`
+- `NEXT_PUBLIC_SANITY_PROJECT_ID`
+- `NEXT_PUBLIC_SANITY_DATASET`
+- `SANITY_PREVIEW_SECRET`
+
+Google reviews:
+
+- `GOOGLE_MAPS_API_KEY`
+- `GOOGLE_PLACE_ID`
+
+## Content model
+
+Sanity schema files live in `sanity/schemaTypes/` and currently cover:
+
+- `siteSettings`
+- `service`
+- `caseStudy`
+- `insight`
+- `location`
+- `testimonial`
+
+If Sanity is not configured, the app serves local fallback content from `lib/content/local-data.ts`.
+
+## Reviews strategy
+
+- Primary source: Google Places reviews
+- Fallback source: Sanity testimonials
+- If neither is configured, the site renders an honest activation state instead of fake proof
+
+## Utility routes
+
+Portal and utility routes are intentionally marked `noindex` so the public marketing surface stays focused on commercial and editorial intent.
