@@ -305,14 +305,13 @@ export function MakeHomePage({ bookingUrl, contactEmail, supportPhone }: MakeHom
                 return (
                   <motion.div
                     className="relative"
-                    initial={{ opacity: 0, y: 56 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    initial={false}
                     key={step.id}
                     ref={(element) => {
                       processStepRefs.current[index] = element;
                     }}
                     transition={{ delay: index * 0.06, duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ amount: 0.3, once: true }}
-                    whileInView={{ opacity: 1, y: 0 }}
                   >
                     {index < processSteps.length - 1 ? (
                       <div className="absolute top-24 left-6 h-full w-0.5 overflow-hidden md:left-12">
@@ -320,10 +319,8 @@ export function MakeHomePage({ bookingUrl, contactEmail, supportPhone }: MakeHom
                         <motion.div
                           animate={{ opacity: 0.12 + intensity * 0.6, scaleY: 0.7 + intensity * 0.3 }}
                           className="absolute inset-x-0 top-0 h-full origin-top bg-gradient-to-b from-[#2196F3] via-[#4DB2FF] to-[#F59E0B]"
-                          initial={{ opacity: 0, scaleY: 0 }}
+                          initial={false}
                           transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                          viewport={{ amount: 0.25, once: true }}
-                          whileInView={{ opacity: 0.22, scaleY: 1 }}
                         />
                       </div>
                     ) : null}
@@ -333,18 +330,14 @@ export function MakeHomePage({ bookingUrl, contactEmail, supportPhone }: MakeHom
                         <motion.div
                           animate={{ opacity: 0.12 + intensity * 0.5, scale: 0.84 + intensity * 0.24 }}
                           className="absolute -inset-3 rounded-full bg-gradient-to-r from-[#2196F3] to-[#F59E0B] blur-2xl"
-                          initial={{ opacity: 0, scale: 0.7 }}
+                          initial={false}
                           transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                          viewport={{ amount: 0.25, once: true }}
-                          whileInView={{ opacity: 0.22, scale: 0.88 }}
                         />
                         <motion.div
                           animate={{ borderColor: intensity > 0.55 ? '#7DD3FC' : '#2196F3', scale: 1 + intensity * 0.06 }}
                           className="relative flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#2196F3] bg-zinc-900 md:h-24 md:w-24"
-                          initial={{ opacity: 0, rotate: -8, scale: 0.82 }}
+                          initial={false}
                           transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                          viewport={{ amount: 0.25, once: true }}
-                          whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
                         >
                           <Icon className="h-6 w-6 text-[#2196F3] md:h-10 md:w-10" />
                         </motion.div>
@@ -355,20 +348,16 @@ export function MakeHomePage({ bookingUrl, contactEmail, supportPhone }: MakeHom
                           <motion.h3
                             animate={{ opacity: 0.78 + intensity * 0.22, x: intensity * 6 }}
                             className="text-2xl text-white md:text-3xl"
-                            initial={{ opacity: 0, x: 18 }}
+                            initial={false}
                             transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                            viewport={{ amount: 0.25, once: true }}
-                            whileInView={{ opacity: 0.82, x: 0 }}
                           >
                             {step.title}
                           </motion.h3>
                           <motion.div
                             animate={{ opacity: 0.16 + intensity * 0.84, scale: 1 + intensity * 0.08 }}
                             className="bg-gradient-to-r from-[#2196F3]/20 to-[#F59E0B]/20 bg-clip-text text-5xl font-bold text-transparent md:text-6xl"
-                            initial={{ opacity: 0, x: 24 }}
+                            initial={false}
                             transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                            viewport={{ amount: 0.25, once: true }}
-                            whileInView={{ opacity: 0.2, x: 0 }}
                           >
                             {step.id}
                           </motion.div>
@@ -376,10 +365,8 @@ export function MakeHomePage({ bookingUrl, contactEmail, supportPhone }: MakeHom
                         <motion.p
                           animate={{ opacity: 0.64 + intensity * 0.36, y: 0 }}
                           className="max-w-2xl text-lg leading-relaxed text-zinc-400"
-                          initial={{ opacity: 0, y: 18 }}
+                          initial={false}
                           transition={{ duration: 0.3 }}
-                          viewport={{ amount: 0.25, once: true }}
-                          whileInView={{ opacity: 0.7, y: 0 }}
                         >
                           {step.description}
                         </motion.p>
